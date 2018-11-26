@@ -162,15 +162,18 @@ All commands in this section are generally equivalent to calling [**FillConsoleO
 **Note**  
 For IL and DL, only the lines in the scrolling margins (see Scrolling Margins) are affected. If no margins are set, the default margin borders are the current viewport. If lines would be shifted below the margins, they are discarded. When lines are deleted, blank lines are inserted at the bottom of the margins, lines from outside the viewport are never affected.
 
-For each of the sequences, the default value for &lt;n&gt; if it is omitted is 1.
+For each of the sequences, the default value for &lt;n&gt; if it is omitted is supposedly 1 (this is doubtful, since the Linux console defaults to 0.  It is more likely that someone was a little too hasty with this one point, either in deciding how the terminal code should be interpretted on Windows, or in overlook this small mistake.  Once this is tested this text should be updated.)
 
  
 
 For the following commands, the parameter &lt;n&gt; has 3 valid values:
 
--   0 erases from the beginning of the line/display up to and including the current cursor position
--   1 erases from the current cursor position (inclusive) to the end of the line/display
+-   0 erases, supposedly, from the beginning of the line/display up to and including the current cursor position
+-   0 erases, in Linux, from the current cursor position (inclusive) to the end of the line/display
+-   1 erases, supposedly, from the current cursor position (inclusive) to the end of the line/display
+-   1 erases, in Linux, from the beginning of the line/display up to and including the current cursor position
 -   2 erases the entire line/display
+-   3 erases, in Linux, the entire display (not used with Erase Line), and also erases the scroll back buffer. Testing needs to be done to see where else this is supported in Windows Console and Xorg/Wayland virtual terminals.
 
 | Sequence           | Code | Description      | Behavior                                                                                     |
 |--------------------|------|------------------|----------------------------------------------------------------------------------------------|
